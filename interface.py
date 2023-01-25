@@ -50,7 +50,7 @@ def verbose_output(obj : list, eq, n, prec = 2):
   display(Latex(latex(eq)))
   print ("\n\n")
 
-def exec_op (n:int, op:list, eq, is_verbose = false, prec = 2):
+def exec_op (n:int, op:list, eq, is_verbose = False, prec = 2):
   """Executes an operation on an equation object
 
   :param n: An integer describing what operation is currently being executed
