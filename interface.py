@@ -42,7 +42,7 @@ def verbose_output(obj : list, eq, n, prec = 2):
   elif obj[0] == "var_set":
     latex_string += "Set the variables: }" + r"\text{, }".join([latex(i)+"="+latex(obj[1][i].rhs.evalf(prec)) for i in obj[2]])
   elif obj[0] == "var_collect":
-    latex_string += "Collect into the variables: }" + r"\text{, }".join(latex(i) for i in obj[2])
+    latex_string += "Collect into the variables: }" + r"\text{, }".join([latex(i) for i in obj[2]])
   elif obj[0] == "init":
     latex_string+= "Begin with }"
   display(Latex(latex_string))
