@@ -19,9 +19,9 @@ def verbose_output(obj : list, eq, n, prec = 2):
   if obj[0] == "expand":
     latex_string += r"Expand equation}"
   elif obj[0] == "collect_lhs":
-    latex_string += "Collect all }" + str(obj[1]) + r" \text{ on LHS}"
+    latex_string += "Collect all }" + latex(obj[1]) + r" \text{ on LHS}"
   elif obj[0] == "collect_rhs":
-    latex_string += "Collect all }" + str(obj[1]) + r" \text{ on RHS}"
+    latex_string += "Collect all }" + latex(obj[1]) + r" \text{ on RHS}"
   elif obj[0] == "simplify":
     latex_string += "Simplify equation}"
   elif obj[0] == "pythag_id":
@@ -34,15 +34,15 @@ def verbose_output(obj : list, eq, n, prec = 2):
     latex_string += "Move all terms to RHS}"
   elif obj[0] == "solve":
     if len(obj) == 2:
-      latex_string += "Solve equation for }" + str(obj[1])
+      latex_string += "Solve equation for }" + latex(obj[1])
     if len(obj) == 3:
-      latex_string += "Solve equation for } " + str(obj[1]) +r" \text{ and select solution \#}" + str(obj[2]+1)
+      latex_string += "Solve equation for } " + latex(obj[1]) +r" \text{ and select solution \#}" + str(obj[2]+1)
   elif obj[0] == "var_expand":
-    latex_string += "Expand the variables: }" + r"\text{, }".join(obj[2])
+    latex_string += "Expand the variables: }" + r"\text{, }".join([latex(i) for i in obj[2]])
   elif obj[0] == "var_set":
-    latex_string += "Set the variables: }" + r"\text{, }".join([str(i)+"="+str(obj[1][i].rhs.evalf(prec)) for i in obj[2]])
+    latex_string += "Set the variables: }" + r"\text{, }".join([latex(i)+"="+latex(obj[1][i].rhs.evalf(prec)) for i in obj[2]])
   elif obj[0] == "var_collect":
-    latex_string += "Collect into the variables: }" + r"\text{, }".join(obj[2])
+    latex_string += "Collect into the variables: }" + r"\text{, }".join(latex(i) for i in obj[2])
   elif obj[0] == "init":
     latex_string+= "Begin with }"
   display(Latex(latex_string))
